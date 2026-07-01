@@ -2,37 +2,32 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         $users = [
             [
                 'name' => 'Superadmin',
                 'email' => 'superadmin@gmail.com',
-                'role' => 'Superadmin'
+                'role' => 'Superadmin',
             ],
-
             [
                 'name' => 'Admin',
                 'email' => 'admin@gmail.com',
-                'role' => 'Admin    '
+                'role' => 'Admin',
             ],
-
         ];
 
-        foreach($user as $user) {
+        foreach ($users as $user) {
             User::factory()->create([
-                'name' => $user['nama'],
+                'name' => $user['name'],
                 'email' => $user['email'],
                 'role' => $user['role'],
-            ])
+            ]);
         }
     }
 }
