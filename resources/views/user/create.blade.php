@@ -55,8 +55,8 @@
 
                 <div class="col-md-6">
                     <label for="role" class="form-label required">Role</label>
-                    <select class="form-select @error('role') is-invalid @enderror" id="role" name="role"
-                        required>
+                    <select class="form-select select2-default @error('role') is-invalid @enderror" id="role"
+                        name="role" required>
                         <option value="">Pilih role</option>
                         <option value="Superadmin" @selected(old('role') == 'Superadmin')>
                             Superadmin

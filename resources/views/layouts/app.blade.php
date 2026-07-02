@@ -215,6 +215,40 @@
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>
 
+    {{-- modal delete --}}
+    <div class="modal fade" id="deleteModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <form id="form-delete" method="POST" action="">
+                    @csrf
+                    @method('DELETE')
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">Konfirmasi</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        Apakah Anda yakin ingin menghapus data ini?
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            Batal
+                        </button>
+
+                        <button type="submit" class="btn btn-danger">
+                            Ya, Hapus
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
     @stack('modals')
 
     <!-- add on -->
@@ -256,6 +290,25 @@
             theme: 'bootstrap-5',
             width: "100%",
         })
+
+        let flashSuccess = "{{ session('success') ?? '' }}";
+        if (flashSuccess) {
+            Swal.fire({
+                title: "MANTAP!",
+                text: flashSuccess,
+                icon: "success",
+                timer: 1500,
+                showConfirmButton: false,
+            });
+        }
+        let flashError = "{{ session('error') ?? '' }}";
+        if (flashError) {
+            Swal.fire({
+                icon: "error",
+                title: "Waduh...",
+                text: flashError,
+            });
+        }
     </script>
 
     @stack('scripts')
